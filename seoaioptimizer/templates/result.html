@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyword Analytics</title>
+    <!-- Include Plotly library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .section {
+            margin-top: 40px;
+        }
+
+        .query-boxes {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .query-box {
+            flex: 0 0 calc(20% - 20px); /* Adjust the width as needed */
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .query-box p {
+            margin: 0;
+            color: #495057;
+        }
+
+        .query-box:hover {
+            background-color: #e2e6ea; /* Change the background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Keyword Analytics for {{ keyword }}</h1>
+
+        <div class="section">
+            <h2>Top Related Queries:</h2>
+            <div class="query-boxes">
+                {% for query in top_related_queries.index[:5] %}
+                    <div class="query-box" onclick="generateLog('{{ top_related_queries.loc[query, 'query'] }}')">
+                        <p>
+                            {{ top_related_queries.loc[query, 'query'] }} -
+                            {{ top_related_queries.loc[query, 'value'] }} -
+                            <span class="sentiment-label">Sentiment: {{ top_related_queries.loc[query, 'sentiment'] }}</span>
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section chart-container">
+            <h2>Top Related Queries Chart:</h2>
+            <div id="topRelatedQueriesChart"></div>
+        </div>
+
+        <div class="section chart-container">
+            <h2>Keyword Suggestions:</h2>
+            {{ suggestions|safe }}
+        </div>
+
+        <div class="section">
+            <h2>Real-time Trending Searches:</h2>
+            <ul>
+                {% for search in trending_searches %}
+                    <li>{{ search }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Function to plot bar chart
+        function plotBarChart(containerId, data, layout) {
+            Plotly.newPlot(containerId, data, layout);
+        }
+
+        // Plot top related queries
+        plotBarChart('topRelatedQueriesChart', {{ top_related_queries_chart | safe }}, {title: 'Top Related Queries'});
+
+        // Function to generate log text
+        function generateLog(query) {
+            // You can customize this function to generate the desired log text
+            var logText = "User clicked on query: " + query;
+            console.log(logText); // You can send this to server logs or perform other actions
+            alert("Log generated: " + logText);
+        }
+    </script>
+</body>
+</html>
