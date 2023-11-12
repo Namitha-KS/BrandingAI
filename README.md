@@ -3,11 +3,15 @@
 ## Overview
 The project aims to develop a code that utilizes OpenAI models and ChromaDB to perform advanced analysis on PDF files. By reading the PDF files and extracting relevant information, the code generates analysis in various categories using the powerful natural language processing capabilities of OpenAI models. The analysis is then stored in ChromaDB, a structured database, for easy retrieval and further processing. This project provides a comprehensive solution for analyzing PDF files and extracting valuable insights using cutting-edge technologies.
 
-## Tech Stacks Used
+## Team members
+1. [Sivani L R](https://github.com/sivani-l-r)
+2. [Shivani Lekshmi](https://github.com/ShivaniNair2003)
+3. [Namitha S](https://github.com/Namitha-S-11465)
 
+## Tech Stacks Used
 - **OpenAI**
 - **ChromaDB**
-- 
+  
 ## Installation
 To run this project locally, follow these steps:
 1. Clone the repository
