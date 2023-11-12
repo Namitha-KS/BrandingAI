@@ -6,7 +6,7 @@ import PyPDF2
 app = Flask(__name__)
 
 # Set your OpenAI API key
-openai.api_key = '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'
+openai.api_key = '<key>'
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
 
