@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e6f7ff; /* Light blue background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #007bff; /* Blue color */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em; /* Increased font size */
+        }
+
+        .summary-button {
+            padding: 20px 40px; /* Increased padding */
+            font-size: 24px; /* Increased font size */
+            background-color: #007bff; /* Blue color */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .summary-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Align buttons with space between them */
+            flex-wrap: wrap; /* Allow buttons to wrap to the next line if there's not enough space */
+            margin-bottom: 20px;
+        }
+
+        .button-container button {
+            flex: 1; /* Distribute available space equally among buttons */
+            margin-right: 10px; /* Add margin between buttons */
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e83e8c; /* Pink color */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .button-container button:last-child {
+            margin-right: 0; /* Remove margin from the last button */
+        }
+
+        .button-container button:hover {
+            background-color: #d3387a; /* Darker pink on hover */
+        }
+
+        textarea {
+            width: 80%;
+            height: 200px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da; /* Gray border */
+            border-radius: 5px;
+            resize: none; /* Disable textarea resizing */
+        }
+
+        button.upload-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff; /* Blue color */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        button.upload-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Business Analysis Summary</h1>
+
+
+
+    <button class="summary-button" onclick="showContent('{{ summary }}')">Business Analysis Summary</button>
+
+    <div class="button-container">
+        <button onclick="showContent('{{goals}}')">Business Objectives and Goals</button>
+        <button onclick="showContent('{{ audience }}')">Target Audience and Buyer Personas</button>
+        <button onclick="showContent('{{ landscape }} ')">Competitive Landscape</button>
+        <button onclick="showContent('{{ marketing }} ')">Current Marketing Efforts & Brand Positioning</button>
+        <button onclick="showContent('{{ swot }} ')">SWOT Analysis</button>
+        <button onclick="showContent('{{ budget }} ')">Budget and Resources</button>
+        <button onclick="showContent('{{ tech }} ')">Marketing Technology Stack</button>
+        <button onclick="showContent('{{ map }} ')">Customer Journey Mapping</button>
+        <button onclick="showContent('{{ comp }}')">Regulatory Compliance</button>
+    </div>
+
+    <textarea id="contentTextArea" readonly></textarea>
+
+    <button class="upload-button" onclick="location.href='/';">Upload another PDF</button>
+
+    <script>
+        function showContent(content) {
+            document.getElementById("contentTextArea").value = content;
+        }
+    </script>
+</body>
+</html>
